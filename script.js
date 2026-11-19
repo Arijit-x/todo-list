@@ -14,6 +14,17 @@ const pendingTasks = document.getElementById("pendingTasks");
 
 const emptyMessage = document.getElementById("emptyMessage");
 const filterButtons = document.querySelectorAll(".filter-btn");
+const themeToggle = document.getElementById("themeToggle");
+
+function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    const isDark = theme === "dark";
+
+    themeToggle.textContent = isDark ? "Light mode" : "Dark mode";
+    themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+    themeToggle.setAttribute("aria-pressed", isDark);
+    localStorage.setItem("theme", theme);
+}
 
 
 function addTask() {
@@ -183,6 +194,14 @@ filterButtons.forEach(button => {
 
 
 addBtn.addEventListener("click", addTask);
+
+const savedTheme = localStorage.getItem("theme");
+setTheme(savedTheme === "dark" ? "dark" : "light");
+
+themeToggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+});
 
 
 taskInput.addEventListener("keydown", event => {
