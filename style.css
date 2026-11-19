@@ -171,6 +171,13 @@ header p {
     word-break: break-word;
 }
 
+.task-number {
+    min-width: 1.5em;
+    color: var(--muted-text);
+    font-weight: 600;
+    text-align: right;
+}
+
 .task-item.completed .task-text {
     text-decoration: line-through;
     color: var(--muted-text);
@@ -240,7 +247,7 @@ header p {
 
     .task-item {
         display: grid;
-        grid-template-columns: auto minmax(0, 1fr) auto auto;
+        grid-template-columns: auto auto minmax(0, 1fr) auto auto;
         gap: 8px;
         padding: 10px;
     }

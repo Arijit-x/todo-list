@@ -76,7 +76,7 @@ function renderTasks() {
         return true;
     });
 
-    filteredTasks.forEach(task => {
+    filteredTasks.forEach((task, index) => {
         const li = document.createElement("li");
         li.className = "task-item";
 
@@ -84,7 +84,10 @@ function renderTasks() {
             li.classList.add("completed");
         }
 
-        
+        const taskNumber = document.createElement("span");
+        taskNumber.className = "task-number";
+        taskNumber.textContent = `${index + 1}.`;
+
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = task.completed;
@@ -117,6 +120,7 @@ function renderTasks() {
         });
 
         
+        li.appendChild(taskNumber);
         li.appendChild(checkbox);
         li.appendChild(span);
         li.appendChild(editBtn);
