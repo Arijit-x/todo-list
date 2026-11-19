@@ -35,6 +35,17 @@ function addTask() {
         return;
     }
 
+    const normalizedText = text.replace(/\s+/g, " ").toLowerCase();
+    const duplicatePendingTask = tasks.some(task =>
+        !task.completed &&
+        task.text.replace(/\s+/g, " ").trim().toLowerCase() === normalizedText
+    );
+
+    if (duplicatePendingTask) {
+        alert("An unfinished task with this name already exists!");
+        return;
+    }
+
     const task = {
         id: Date.now(),
         text: text,
